@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.STalkaboutMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.STalkabout">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STUDENTSID" jdbcType="DECIMAL" property="studentsid" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <result column="TIMEING" jdbcType="TIMESTAMP" property="timeing" />
+    <result column="TALKCONTENT" jdbcType="VARCHAR" property="talkcontent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STUDENTSID, CLASSID, TIMEING, TALKCONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_TALKABOUT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_TALKABOUT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.STalkabout">
+    insert into S_TALKABOUT (ID, STUDENTSID, CLASSID, 
+      TIMEING, TALKCONTENT)
+    values (#{id,jdbcType=DECIMAL}, #{studentsid,jdbcType=DECIMAL}, #{classid,jdbcType=DECIMAL}, 
+      #{timeing,jdbcType=TIMESTAMP}, #{talkcontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.STalkabout">
+    insert into S_TALKABOUT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="studentsid != null">
+        STUDENTSID,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+      <if test="timeing != null">
+        TIMEING,
+      </if>
+      <if test="talkcontent != null">
+        TALKCONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="studentsid != null">
+        #{studentsid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="timeing != null">
+        #{timeing,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkcontent != null">
+        #{talkcontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.STalkabout">
+    update S_TALKABOUT
+    <set>
+      <if test="studentsid != null">
+        STUDENTSID = #{studentsid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="timeing != null">
+        TIMEING = #{timeing,jdbcType=TIMESTAMP},
+      </if>
+      <if test="talkcontent != null">
+        TALKCONTENT = #{talkcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.STalkabout">
+    update S_TALKABOUT
+    set STUDENTSID = #{studentsid,jdbcType=DECIMAL},
+      CLASSID = #{classid,jdbcType=DECIMAL},
+      TIMEING = #{timeing,jdbcType=TIMESTAMP},
+      TALKCONTENT = #{talkcontent,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

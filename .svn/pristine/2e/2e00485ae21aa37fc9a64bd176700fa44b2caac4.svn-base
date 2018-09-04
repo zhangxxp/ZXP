@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SNoticeMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SNotice">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="CRETETIME" jdbcType="TIMESTAMP" property="cretetime" />
+    <result column="USERID" jdbcType="DECIMAL" property="userid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TITLE, CONTENT, CRETETIME, USERID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_NOTICE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_NOTICE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SNotice">
+    insert into S_NOTICE (ID, TITLE, CONTENT, 
+      CRETETIME, USERID)
+    values (#{id,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{cretetime,jdbcType=TIMESTAMP}, #{userid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SNotice">
+    insert into S_NOTICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="cretetime != null">
+        CRETETIME,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="cretetime != null">
+        #{cretetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SNotice">
+    update S_NOTICE
+    <set>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="cretetime != null">
+        CRETETIME = #{cretetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SNotice">
+    update S_NOTICE
+    set TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CRETETIME = #{cretetime,jdbcType=TIMESTAMP},
+      USERID = #{userid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

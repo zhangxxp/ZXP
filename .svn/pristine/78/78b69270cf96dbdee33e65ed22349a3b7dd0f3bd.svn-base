@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SCompany">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="CONAME" jdbcType="VARCHAR" property="coname" />
+    <result column="COADDRESS" jdbcType="VARCHAR" property="coaddress" />
+    <result column="COPHONE" jdbcType="DECIMAL" property="cophone" />
+    <result column="COADD" jdbcType="VARCHAR" property="coadd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CONAME, COADDRESS, COPHONE, COADD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_COMPANY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_COMPANY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SCompany">
+    insert into S_COMPANY (ID, CONAME, COADDRESS, 
+      COPHONE, COADD)
+    values (#{id,jdbcType=DECIMAL}, #{coname,jdbcType=VARCHAR}, #{coaddress,jdbcType=VARCHAR}, 
+      #{cophone,jdbcType=DECIMAL}, #{coadd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SCompany">
+    insert into S_COMPANY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="coname != null">
+        CONAME,
+      </if>
+      <if test="coaddress != null">
+        COADDRESS,
+      </if>
+      <if test="cophone != null">
+        COPHONE,
+      </if>
+      <if test="coadd != null">
+        COADD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="coname != null">
+        #{coname,jdbcType=VARCHAR},
+      </if>
+      <if test="coaddress != null">
+        #{coaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cophone != null">
+        #{cophone,jdbcType=DECIMAL},
+      </if>
+      <if test="coadd != null">
+        #{coadd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SCompany">
+    update S_COMPANY
+    <set>
+      <if test="coname != null">
+        CONAME = #{coname,jdbcType=VARCHAR},
+      </if>
+      <if test="coaddress != null">
+        COADDRESS = #{coaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cophone != null">
+        COPHONE = #{cophone,jdbcType=DECIMAL},
+      </if>
+      <if test="coadd != null">
+        COADD = #{coadd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SCompany">
+    update S_COMPANY
+    set CONAME = #{coname,jdbcType=VARCHAR},
+      COADDRESS = #{coaddress,jdbcType=VARCHAR},
+      COPHONE = #{cophone,jdbcType=DECIMAL},
+      COADD = #{coadd,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

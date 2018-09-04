@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SAdvisoryMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SAdvisory">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_ADVISORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_ADVISORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SAdvisory">
+    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+      SELECT SEQ_S_ADVISORY.nextval FROM dual
+    </selectKey>
+    insert into S_ADVISORY (ID, NAME, STATE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SAdvisory">
+    insert into S_ADVISORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SAdvisory">
+    update S_ADVISORY
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SAdvisory">
+    update S_ADVISORY
+    set NAME = #{name,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT * FROM  S_ADVISORY
+    <where>
+      <if test="name!=null and name!=''">
+        <bind name="deptLike" value="'%'+name+'%'"></bind>
+        name LIKE #{deptLike}
+      </if>
+      <if test="id!=null and id!=''">
+        or id=#{id}
+      </if>
+    </where>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from S_ADVISORY  where state!=0
+  </select>
+</mapper>

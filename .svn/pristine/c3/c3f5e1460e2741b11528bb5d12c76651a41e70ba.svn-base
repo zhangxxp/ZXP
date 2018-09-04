@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SScoreMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SScore">
+    <result column="RID" jdbcType="DECIMAL" property="rid" />
+    <result column="SID" jdbcType="DECIMAL" property="sid" />
+    <result column="SCORE" jdbcType="DECIMAL" property="score" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sc.pojo.SScore">
+    insert into S_SCORE (RID, SID, SCORE
+      )
+    values (#{rid,jdbcType=DECIMAL}, #{sid,jdbcType=DECIMAL}, #{score,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SScore">
+    insert into S_SCORE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        RID,
+      </if>
+      <if test="sid != null">
+        SID,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=DECIMAL},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

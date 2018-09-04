@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="MyApp">
+    <appenders>
+        <!--配置控制台输出日志-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--配置输出的日志级别-->
+            <ThresholdFilter level="info"/>
+            <!--配置输出的日志格式-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%C].%M(%L) --> %m%n"/>
+        </Console>
+        <!--配置输出日志到文件-->
+        <File name="log" fileName="e:\\ssh.log" append="true">
+            <!--配置日志级别-->
+            <ThresholdFilter level="info"/>
+            <!--配置日志样式-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p [%C].%M(%L) --> %m%n"/>
+        </File>w
+    </appenders>
+    <!--配置根Logger-->
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="Console"></appender-ref>
+            <appender-ref ref="log"></appender-ref>
+        </root>
+    </loggers>
+</Configuration>

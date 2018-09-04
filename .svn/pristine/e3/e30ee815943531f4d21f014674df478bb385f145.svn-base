@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SClientcallbackMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SClientcallback">
+    <result column="CLID" jdbcType="DECIMAL" property="clid" />
+    <result column="CAID" jdbcType="DECIMAL" property="caid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sc.pojo.SClientcallback">
+    insert into S_CLIENTCALLBACK (CLID, CAID)
+    values (#{clid,jdbcType=DECIMAL}, #{caid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SClientcallback">
+    insert into S_CLIENTCALLBACK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clid != null">
+        CLID,
+      </if>
+      <if test="caid != null">
+        CAID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clid != null">
+        #{clid,jdbcType=DECIMAL},
+      </if>
+      <if test="caid != null">
+        #{caid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

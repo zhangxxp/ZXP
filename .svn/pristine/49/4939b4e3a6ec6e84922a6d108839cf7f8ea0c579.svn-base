@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SActivityMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SActivity">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <result column="ACTNAME" jdbcType="VARCHAR" property="actname" />
+    <result column="ACTPOSITION" jdbcType="VARCHAR" property="actposition" />
+    <result column="ACTTIME" jdbcType="TIMESTAMP" property="acttime" />
+    <result column="TID" jdbcType="DECIMAL" property="tid" />
+    <result column="PIC" jdbcType="VARCHAR" property="pic" />
+    <result column="ACTINFOR" jdbcType="VARCHAR" property="actinfor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CLASSID, ACTNAME, ACTPOSITION, ACTTIME, TID, PIC, ACTINFOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_ACTIVITY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_ACTIVITY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SActivity">
+    insert into S_ACTIVITY (ID, CLASSID, ACTNAME, 
+      ACTPOSITION, ACTTIME, TID, 
+      PIC, ACTINFOR)
+    values (#{id,jdbcType=DECIMAL}, #{classid,jdbcType=DECIMAL}, #{actname,jdbcType=VARCHAR}, 
+      #{actposition,jdbcType=VARCHAR}, #{acttime,jdbcType=TIMESTAMP}, #{tid,jdbcType=DECIMAL}, 
+      #{pic,jdbcType=VARCHAR}, #{actinfor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SActivity">
+    insert into S_ACTIVITY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+      <if test="actname != null">
+        ACTNAME,
+      </if>
+      <if test="actposition != null">
+        ACTPOSITION,
+      </if>
+      <if test="acttime != null">
+        ACTTIME,
+      </if>
+      <if test="tid != null">
+        TID,
+      </if>
+      <if test="pic != null">
+        PIC,
+      </if>
+      <if test="actinfor != null">
+        ACTINFOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="actname != null">
+        #{actname,jdbcType=VARCHAR},
+      </if>
+      <if test="actposition != null">
+        #{actposition,jdbcType=VARCHAR},
+      </if>
+      <if test="acttime != null">
+        #{acttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=DECIMAL},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="actinfor != null">
+        #{actinfor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SActivity">
+    update S_ACTIVITY
+    <set>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="actname != null">
+        ACTNAME = #{actname,jdbcType=VARCHAR},
+      </if>
+      <if test="actposition != null">
+        ACTPOSITION = #{actposition,jdbcType=VARCHAR},
+      </if>
+      <if test="acttime != null">
+        ACTTIME = #{acttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tid != null">
+        TID = #{tid,jdbcType=DECIMAL},
+      </if>
+      <if test="pic != null">
+        PIC = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="actinfor != null">
+        ACTINFOR = #{actinfor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SActivity">
+    update S_ACTIVITY
+    set CLASSID = #{classid,jdbcType=DECIMAL},
+      ACTNAME = #{actname,jdbcType=VARCHAR},
+      ACTPOSITION = #{actposition,jdbcType=VARCHAR},
+      ACTTIME = #{acttime,jdbcType=TIMESTAMP},
+      TID = #{tid,jdbcType=DECIMAL},
+      PIC = #{pic,jdbcType=VARCHAR},
+      ACTINFOR = #{actinfor,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

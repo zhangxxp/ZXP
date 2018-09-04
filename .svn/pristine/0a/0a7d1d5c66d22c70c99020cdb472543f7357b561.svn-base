@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SRoleMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SRole">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="ROLESTATE" jdbcType="DECIMAL" property="rolestate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ROLENAME, ROLESTATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_ROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_ROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SRole">
+    insert into S_ROLE (ID, ROLENAME, ROLESTATE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{rolename,jdbcType=VARCHAR}, #{rolestate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SRole">
+    insert into S_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="rolestate != null">
+        ROLESTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestate != null">
+        #{rolestate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SRole">
+    update S_ROLE
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolestate != null">
+        ROLESTATE = #{rolestate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SRole">
+    update S_ROLE
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLESTATE = #{rolestate,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

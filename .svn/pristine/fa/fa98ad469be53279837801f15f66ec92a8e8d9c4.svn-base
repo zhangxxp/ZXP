@@ -1,0 +1,84 @@
+package com.sc.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class SCallback implements Serializable {
+    private Integer id;
+
+    private Integer advisory;
+
+    private Date otime;
+
+    private Date ctime;
+
+    private String name;
+
+    private String content;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getAdvisory() {
+        return advisory;
+    }
+
+    public void setAdvisory(Integer advisory) {
+        this.advisory = advisory;
+    }
+
+    public Date getOtime() {
+        return otime;
+    }
+
+    public void setOtime(Date otime) {
+        this.otime = otime;
+    }
+
+    public Date getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", advisory=").append(advisory);
+        sb.append(", otime=").append(otime);
+        sb.append(", ctime=").append(ctime);
+        sb.append(", name=").append(name);
+        sb.append(", content=").append(content);
+        sb.append("]");
+        return sb.toString();
+    }
+}

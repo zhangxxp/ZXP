@@ -1,0 +1,17 @@
+package com.sc.mapper;
+
+import com.sc.pojo.SWay;
+
+public interface SWayMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(SWay record);
+
+    int insertSelective(SWay record);
+
+    SWay selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(SWay record);
+
+    int updateByPrimaryKey(SWay record);
+}

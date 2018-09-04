@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SStudentsMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SStudents">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="CLIENTID" jdbcType="DECIMAL" property="clientid" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CLIENTID, CLASSID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_STUDENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_STUDENTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SStudents">
+    insert into S_STUDENTS (ID, CLIENTID, CLASSID
+      )
+    values (#{id,jdbcType=DECIMAL}, #{clientid,jdbcType=DECIMAL}, #{classid,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SStudents">
+    insert into S_STUDENTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="clientid != null">
+        CLIENTID,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="clientid != null">
+        #{clientid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SStudents">
+    update S_STUDENTS
+    <set>
+      <if test="clientid != null">
+        CLIENTID = #{clientid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SStudents">
+    update S_STUDENTS
+    set CLIENTID = #{clientid,jdbcType=DECIMAL},
+      CLASSID = #{classid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

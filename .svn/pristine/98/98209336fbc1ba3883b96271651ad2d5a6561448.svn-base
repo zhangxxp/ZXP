@@ -1,0 +1,39 @@
+package com.sc.pojo;
+
+import java.io.Serializable;
+
+public class SClientcallback implements Serializable {
+    private Integer clid;
+
+    private Integer caid;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getClid() {
+        return clid;
+    }
+
+    public void setClid(Integer clid) {
+        this.clid = clid;
+    }
+
+    public Integer getCaid() {
+        return caid;
+    }
+
+    public void setCaid(Integer caid) {
+        this.caid = caid;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", clid=").append(clid);
+        sb.append(", caid=").append(caid);
+        sb.append("]");
+        return sb.toString();
+    }
+}

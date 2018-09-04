@@ -1,0 +1,227 @@
+package com.sc.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class SClient implements Serializable {
+    private Integer id;
+
+    private String name;
+
+    private Short sex;
+
+    private Integer advisory;
+
+    private String cocontent;
+
+    private Integer users;
+
+    private Short idcard;
+
+    private Short phone;
+
+    private Short qq;
+
+    private Short clienttype;
+
+    private String schools;
+
+    private String major;
+
+    private Short consult;
+
+    private String city;
+
+    private String ntplace;
+
+    private Date time;
+
+    private Integer way;
+
+    private Short state;
+
+    private Short idea;
+
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public Short getSex() {
+        return sex;
+    }
+
+    public void setSex(Short sex) {
+        this.sex = sex;
+    }
+
+    public Integer getAdvisory() {
+        return advisory;
+    }
+
+    public void setAdvisory(Integer advisory) {
+        this.advisory = advisory;
+    }
+
+    public String getCocontent() {
+        return cocontent;
+    }
+
+    public void setCocontent(String cocontent) {
+        this.cocontent = cocontent == null ? null : cocontent.trim();
+    }
+
+    public Integer getUsers() {
+        return users;
+    }
+
+    public void setUsers(Integer users) {
+        this.users = users;
+    }
+
+    public Short getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(Short idcard) {
+        this.idcard = idcard;
+    }
+
+    public Short getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Short phone) {
+        this.phone = phone;
+    }
+
+    public Short getQq() {
+        return qq;
+    }
+
+    public void setQq(Short qq) {
+        this.qq = qq;
+    }
+
+    public Short getClienttype() {
+        return clienttype;
+    }
+
+    public void setClienttype(Short clienttype) {
+        this.clienttype = clienttype;
+    }
+
+    public String getSchools() {
+        return schools;
+    }
+
+    public void setSchools(String schools) {
+        this.schools = schools == null ? null : schools.trim();
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major == null ? null : major.trim();
+    }
+
+    public Short getConsult() {
+        return consult;
+    }
+
+    public void setConsult(Short consult) {
+        this.consult = consult;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getNtplace() {
+        return ntplace;
+    }
+
+    public void setNtplace(String ntplace) {
+        this.ntplace = ntplace == null ? null : ntplace.trim();
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Integer getWay() {
+        return way;
+    }
+
+    public void setWay(Integer way) {
+        this.way = way;
+    }
+
+    public Short getState() {
+        return state;
+    }
+
+    public void setState(Short state) {
+        this.state = state;
+    }
+
+    public Short getIdea() {
+        return idea;
+    }
+
+    public void setIdea(Short idea) {
+        this.idea = idea;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", sex=").append(sex);
+        sb.append(", advisory=").append(advisory);
+        sb.append(", cocontent=").append(cocontent);
+        sb.append(", users=").append(users);
+        sb.append(", idcard=").append(idcard);
+        sb.append(", phone=").append(phone);
+        sb.append(", qq=").append(qq);
+        sb.append(", clienttype=").append(clienttype);
+        sb.append(", schools=").append(schools);
+        sb.append(", major=").append(major);
+        sb.append(", consult=").append(consult);
+        sb.append(", city=").append(city);
+        sb.append(", ntplace=").append(ntplace);
+        sb.append(", time=").append(time);
+        sb.append(", way=").append(way);
+        sb.append(", state=").append(state);
+        sb.append(", idea=").append(idea);
+        sb.append("]");
+        return sb.toString();
+    }
+}

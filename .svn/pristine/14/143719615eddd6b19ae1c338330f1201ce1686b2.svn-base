@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SPowerMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SPower">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="SYSTEMSTATE" jdbcType="DECIMAL" property="systemstate" />
+    <result column="SEMSTATE" jdbcType="DECIMAL" property="semstate" />
+    <result column="CLASSSTATE" jdbcType="DECIMAL" property="classstate" />
+    <result column="STUDENTSSTATE" jdbcType="DECIMAL" property="studentsstate" />
+    <result column="JOBSTATE" jdbcType="DECIMAL" property="jobstate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SYSTEMSTATE, SEMSTATE, CLASSSTATE, STUDENTSSTATE, JOBSTATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_POWER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_POWER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SPower">
+    insert into S_POWER (ID, SYSTEMSTATE, SEMSTATE, 
+      CLASSSTATE, STUDENTSSTATE, JOBSTATE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{systemstate,jdbcType=DECIMAL}, #{semstate,jdbcType=DECIMAL}, 
+      #{classstate,jdbcType=DECIMAL}, #{studentsstate,jdbcType=DECIMAL}, #{jobstate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SPower">
+    insert into S_POWER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="systemstate != null">
+        SYSTEMSTATE,
+      </if>
+      <if test="semstate != null">
+        SEMSTATE,
+      </if>
+      <if test="classstate != null">
+        CLASSSTATE,
+      </if>
+      <if test="studentsstate != null">
+        STUDENTSSTATE,
+      </if>
+      <if test="jobstate != null">
+        JOBSTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="systemstate != null">
+        #{systemstate,jdbcType=DECIMAL},
+      </if>
+      <if test="semstate != null">
+        #{semstate,jdbcType=DECIMAL},
+      </if>
+      <if test="classstate != null">
+        #{classstate,jdbcType=DECIMAL},
+      </if>
+      <if test="studentsstate != null">
+        #{studentsstate,jdbcType=DECIMAL},
+      </if>
+      <if test="jobstate != null">
+        #{jobstate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SPower">
+    update S_POWER
+    <set>
+      <if test="systemstate != null">
+        SYSTEMSTATE = #{systemstate,jdbcType=DECIMAL},
+      </if>
+      <if test="semstate != null">
+        SEMSTATE = #{semstate,jdbcType=DECIMAL},
+      </if>
+      <if test="classstate != null">
+        CLASSSTATE = #{classstate,jdbcType=DECIMAL},
+      </if>
+      <if test="studentsstate != null">
+        STUDENTSSTATE = #{studentsstate,jdbcType=DECIMAL},
+      </if>
+      <if test="jobstate != null">
+        JOBSTATE = #{jobstate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SPower">
+    update S_POWER
+    set SYSTEMSTATE = #{systemstate,jdbcType=DECIMAL},
+      SEMSTATE = #{semstate,jdbcType=DECIMAL},
+      CLASSSTATE = #{classstate,jdbcType=DECIMAL},
+      STUDENTSSTATE = #{studentsstate,jdbcType=DECIMAL},
+      JOBSTATE = #{jobstate,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

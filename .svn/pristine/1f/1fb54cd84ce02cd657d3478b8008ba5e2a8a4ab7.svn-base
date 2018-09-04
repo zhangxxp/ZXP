@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SClassMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SClass">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="CLASSNAME" jdbcType="VARCHAR" property="classname" />
+    <result column="CLASSTIME" jdbcType="TIMESTAMP" property="classtime" />
+    <result column="TID" jdbcType="DECIMAL" property="tid" />
+    <result column="WID" jdbcType="DECIMAL" property="wid" />
+    <result column="NUM" jdbcType="DECIMAL" property="num" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CLASSNAME, CLASSTIME, TID, WID, NUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_CLASS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_CLASS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SClass">
+    insert into S_CLASS (ID, CLASSNAME, CLASSTIME, 
+      TID, WID, NUM)
+    values (#{id,jdbcType=DECIMAL}, #{classname,jdbcType=VARCHAR}, #{classtime,jdbcType=TIMESTAMP}, 
+      #{tid,jdbcType=DECIMAL}, #{wid,jdbcType=DECIMAL}, #{num,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SClass">
+    insert into S_CLASS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="classname != null">
+        CLASSNAME,
+      </if>
+      <if test="classtime != null">
+        CLASSTIME,
+      </if>
+      <if test="tid != null">
+        TID,
+      </if>
+      <if test="wid != null">
+        WID,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="classname != null">
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="classtime != null">
+        #{classtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=DECIMAL},
+      </if>
+      <if test="wid != null">
+        #{wid,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SClass">
+    update S_CLASS
+    <set>
+      <if test="classname != null">
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="classtime != null">
+        CLASSTIME = #{classtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tid != null">
+        TID = #{tid,jdbcType=DECIMAL},
+      </if>
+      <if test="wid != null">
+        WID = #{wid,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SClass">
+    update S_CLASS
+    set CLASSNAME = #{classname,jdbcType=VARCHAR},
+      CLASSTIME = #{classtime,jdbcType=TIMESTAMP},
+      TID = #{tid,jdbcType=DECIMAL},
+      WID = #{wid,jdbcType=DECIMAL},
+      NUM = #{num,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

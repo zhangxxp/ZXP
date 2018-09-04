@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--开启注解-->
+    <mvc:annotation-driven />
+    <context:component-scan base-package="com.sc.controller"/>
+
+    <!--静态资源处理-->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />
+    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/plugins/" mapping="/plugins/**" />
+   <!-- <mvc:resources location="/scripts/" mapping="/scripts/**" />
+    <mvc:resources location="/upload/" mapping="/upload/**" />-->
+
+    <!-- 页面解析前后缀 -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+            id="internalResourceViewResolver">
+        <!-- action中return的页面的前缀 -->
+        <property name="prefix" value="/pages/" />
+        <!-- action中return的页面的后缀 -->
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>
