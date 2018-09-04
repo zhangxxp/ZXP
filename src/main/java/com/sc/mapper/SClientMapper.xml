@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SClientMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SClient">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX" jdbcType="DECIMAL" property="sex" />
+    <result column="COCONTENT" jdbcType="VARCHAR" property="cocontent" />
+    <result column="IDCARD" jdbcType="DECIMAL" property="idcard" />
+    <result column="PHONE" jdbcType="DECIMAL" property="phone" />
+    <result column="QQ" jdbcType="DECIMAL" property="qq" />
+    <result column="CLIENTTYPE" jdbcType="DECIMAL" property="clienttype" />
+    <result column="SCHOOLS" jdbcType="VARCHAR" property="schools" />
+    <result column="MAJOR" jdbcType="VARCHAR" property="major" />
+    <result column="CONSULT" jdbcType="DECIMAL" property="consult" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="NTPLACE" jdbcType="VARCHAR" property="ntplace" />
+    <result column="TIME" jdbcType="TIMESTAMP" property="time" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="IDEA" jdbcType="DECIMAL" property="idea" />
+    <association property="sWay" column="way"  select="com.sc.mapper.SWayMapper.selectByPrimaryKey"/>
+    <association property="sadvisory" column="advisory"  select="com.sc.mapper.SAdvisoryMapper.selectByPrimaryKey"/>
+    <association property="susers" column="users"  select="com.sc.mapper.SUserMapper.selectByPrimaryKey"/>
+    <collection property="scallbacks" column="id" select="com.sc.mapper.SCallbackMapper.selectCallbackByClientId"></collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, SEX, ADVISORY, COCONTENT, USERS, IDCARD, PHONE, QQ, CLIENTTYPE, SCHOOLS, 
+    MAJOR, CONSULT, CITY, NTPLACE, TIME, WAY, STATE, IDEA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_CLIENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_CLIENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SClient">
+    <selectKey resultType="int" keyProperty="id" order="BEFORE">
+      SELECT SEQ_S_CLIENT.nextval FROM dual
+    </selectKey>
+    insert into S_CLIENT (ID, NAME, SEX, 
+      ADVISORY, COCONTENT, USERS, 
+      IDCARD, PHONE, QQ, 
+      CLIENTTYPE, SCHOOLS, MAJOR, 
+      CONSULT, CITY, NTPLACE, 
+      TIME, WAY, STATE, 
+      IDEA)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, 
+      #{sadvisory.id,jdbcType=DECIMAL}, #{cocontent,jdbcType=VARCHAR}, #{susers.id,jdbcType=DECIMAL},
+      #{idcard,jdbcType=DECIMAL}, #{phone,jdbcType=DECIMAL}, #{qq,jdbcType=DECIMAL}, 
+      #{clienttype,jdbcType=DECIMAL}, #{schools,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{consult,jdbcType=DECIMAL}, #{city,jdbcType=VARCHAR}, #{ntplace,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{sWay.id,jdbcType=DECIMAL}, #{state,jdbcType=DECIMAL},
+      #{idea,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SClient">
+    insert into S_CLIENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="advisory != null">
+        ADVISORY,
+      </if>
+      <if test="cocontent != null">
+        COCONTENT,
+      </if>
+      <if test="users != null">
+        USERS,
+      </if>
+      <if test="idcard != null">
+        IDCARD,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="clienttype != null">
+        CLIENTTYPE,
+      </if>
+      <if test="schools != null">
+        SCHOOLS,
+      </if>
+      <if test="major != null">
+        MAJOR,
+      </if>
+      <if test="consult != null">
+        CONSULT,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="ntplace != null">
+        NTPLACE,
+      </if>
+      <if test="time != null time !=''">
+        TIME,
+      </if>
+      <if test="sWay.id != null">
+        WAY,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="idea != null">
+        IDEA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="advisory != null">
+        #{sadvisory.id,jdbcType=DECIMAL},
+      </if>
+      <if test="cocontent != null">
+        #{cocontent,jdbcType=VARCHAR},
+      </if>
+      <if test="users != null">
+        #{susers.id,jdbcType=DECIMAL},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=DECIMAL},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=DECIMAL},
+      </if>
+      <if test="clienttype != null">
+        #{clienttype,jdbcType=DECIMAL},
+      </if>
+      <if test="schools != null">
+        #{schools,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="consult != null">
+        #{consult,jdbcType=DECIMAL},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="ntplace != null">
+        #{ntplace,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null time !=''">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sWay.id != null">
+        #{sWay.id,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="idea != null">
+        #{idea,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SClient">
+    update S_CLIENT
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="advisory != null">
+        ADVISORY = #{sadvisory.id,jdbcType=DECIMAL},
+      </if>
+      <if test="cocontent != null">
+        COCONTENT = #{cocontent,jdbcType=VARCHAR},
+      </if>
+      <if test="users != null">
+        USERS = #{susers.id,jdbcType=DECIMAL},
+      </if>
+      <if test="idcard != null">
+        IDCARD = #{idcard,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=DECIMAL},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=DECIMAL},
+      </if>
+      <if test="clienttype != null">
+        CLIENTTYPE = #{clienttype,jdbcType=DECIMAL},
+      </if>
+      <if test="schools != null">
+        SCHOOLS = #{schools,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="consult != null">
+        CONSULT = #{consult,jdbcType=DECIMAL},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="ntplace != null">
+        NTPLACE = #{ntplace,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null time!=''">
+        TIME = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sWay.id != null">
+        WAY = #{sWay.id,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="idea != null">
+        IDEA = #{idea,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SClient">
+    update S_CLIENT
+    set NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      ADVISORY = #{sadvisory.id,jdbcType=DECIMAL},
+      COCONTENT = #{cocontent,jdbcType=VARCHAR},
+      USERS = #{susers.id,jdbcType=DECIMAL},
+      IDCARD = #{idcard,jdbcType=DECIMAL},
+      PHONE = #{phone,jdbcType=DECIMAL},
+      QQ = #{qq,jdbcType=DECIMAL},
+      CLIENTTYPE = #{clienttype,jdbcType=DECIMAL},
+      SCHOOLS = #{schools,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=VARCHAR},
+      CONSULT = #{consult,jdbcType=DECIMAL},
+      CITY = #{city,jdbcType=VARCHAR},
+      NTPLACE = #{ntplace,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=TIMESTAMP},
+      WAY = #{sWay.id,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=DECIMAL},
+      IDEA = #{idea,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    SELECT c.* FROM  S_CLIENT c,S_WAY w
+    <where>
+      c.WAY=w.ID and c.users=1
+      <if test="id!=null and id!=''">
+      and c.id=#{id}
+      </if>
+      <if test="name!=null and name!=''">
+      <bind name="cname" value="'%'+name+'%'"/>
+      and c.name LIKE #{cname}
+      </if>
+    </where>
+  </select>
+<!--  <select id="selectCallbackByClientId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT r.* FROM S_CALLBACK r,S_CLIENTCALLBACK ur WHERE  r.ID=ur.CAID and ur.CLID=#{clid}
+  </select>-->
+</mapper>

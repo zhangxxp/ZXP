@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SEntryMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SEntry">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="HIREDATE" jdbcType="VARCHAR" property="hiredate" />
+    <result column="SALARY" jdbcType="VARCHAR" property="salary" />
+    <result column="MSG" jdbcType="VARCHAR" property="msg" />
+    <result column="CLIENTID" jdbcType="DECIMAL" property="clientid" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <result column="COMID" jdbcType="DECIMAL" property="comid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, HIREDATE, SALARY, MSG, CLIENTID, CLASSID, COMID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_ENTRY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_ENTRY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SEntry">
+    insert into S_ENTRY (ID, HIREDATE, SALARY, 
+      MSG, CLIENTID, CLASSID, 
+      COMID)
+    values (#{id,jdbcType=DECIMAL}, #{hiredate,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{msg,jdbcType=VARCHAR}, #{clientid,jdbcType=DECIMAL}, #{classid,jdbcType=DECIMAL}, 
+      #{comid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SEntry">
+    insert into S_ENTRY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="hiredate != null">
+        HIREDATE,
+      </if>
+      <if test="salary != null">
+        SALARY,
+      </if>
+      <if test="msg != null">
+        MSG,
+      </if>
+      <if test="clientid != null">
+        CLIENTID,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+      <if test="comid != null">
+        COMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="hiredate != null">
+        #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null">
+        #{clientid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="comid != null">
+        #{comid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SEntry">
+    update S_ENTRY
+    <set>
+      <if test="hiredate != null">
+        HIREDATE = #{hiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        SALARY = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        MSG = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null">
+        CLIENTID = #{clientid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="comid != null">
+        COMID = #{comid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SEntry">
+    update S_ENTRY
+    set HIREDATE = #{hiredate,jdbcType=VARCHAR},
+      SALARY = #{salary,jdbcType=VARCHAR},
+      MSG = #{msg,jdbcType=VARCHAR},
+      CLIENTID = #{clientid,jdbcType=DECIMAL},
+      CLASSID = #{classid,jdbcType=DECIMAL},
+      COMID = #{comid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

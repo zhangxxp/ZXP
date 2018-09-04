@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SModuleMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SModule">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="MODNAME" jdbcType="VARCHAR" property="modname" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="MODSTATE" jdbcType="DECIMAL" property="modstate" />
+    <result column="FATHERID" jdbcType="DECIMAL" property="fatherid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MODNAME, URL, MODSTATE, FATHERID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_MODULE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_MODULE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SModule">
+    insert into S_MODULE (ID, MODNAME, URL, 
+      MODSTATE, FATHERID)
+    values (#{id,jdbcType=DECIMAL}, #{modname,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{modstate,jdbcType=DECIMAL}, #{fatherid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SModule">
+    insert into S_MODULE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="modname != null">
+        MODNAME,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="modstate != null">
+        MODSTATE,
+      </if>
+      <if test="fatherid != null">
+        FATHERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="modname != null">
+        #{modname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="modstate != null">
+        #{modstate,jdbcType=DECIMAL},
+      </if>
+      <if test="fatherid != null">
+        #{fatherid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SModule">
+    update S_MODULE
+    <set>
+      <if test="modname != null">
+        MODNAME = #{modname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="modstate != null">
+        MODSTATE = #{modstate,jdbcType=DECIMAL},
+      </if>
+      <if test="fatherid != null">
+        FATHERID = #{fatherid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SModule">
+    update S_MODULE
+    set MODNAME = #{modname,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      MODSTATE = #{modstate,jdbcType=DECIMAL},
+      FATHERID = #{fatherid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

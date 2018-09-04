@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SRolePowerMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SRolePower">
+    <result column="ROLEID" jdbcType="DECIMAL" property="roleid" />
+    <result column="POWERID" jdbcType="DECIMAL" property="powerid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.sc.pojo.SRolePower">
+    insert into S_ROLE_POWER (ROLEID, POWERID)
+    values (#{roleid,jdbcType=DECIMAL}, #{powerid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SRolePower">
+    insert into S_ROLE_POWER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="powerid != null">
+        POWERID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+      <if test="powerid != null">
+        #{powerid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

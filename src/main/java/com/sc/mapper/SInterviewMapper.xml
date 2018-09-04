@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SInterviewMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SInterview">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STIME" jdbcType="VARCHAR" property="stime" />
+    <result column="SCON" jdbcType="VARCHAR" property="scon" />
+    <result column="SADDRESS" jdbcType="VARCHAR" property="saddress" />
+    <result column="SRESULT" jdbcType="VARCHAR" property="sresult" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <result column="CLIENTID" jdbcType="DECIMAL" property="clientid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STIME, SCON, SADDRESS, SRESULT, CLASSID, CLIENTID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_INTERVIEW
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_INTERVIEW
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SInterview">
+    insert into S_INTERVIEW (ID, STIME, SCON, 
+      SADDRESS, SRESULT, CLASSID, 
+      CLIENTID)
+    values (#{id,jdbcType=DECIMAL}, #{stime,jdbcType=VARCHAR}, #{scon,jdbcType=VARCHAR}, 
+      #{saddress,jdbcType=VARCHAR}, #{sresult,jdbcType=VARCHAR}, #{classid,jdbcType=DECIMAL}, 
+      #{clientid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SInterview">
+    insert into S_INTERVIEW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="stime != null">
+        STIME,
+      </if>
+      <if test="scon != null">
+        SCON,
+      </if>
+      <if test="saddress != null">
+        SADDRESS,
+      </if>
+      <if test="sresult != null">
+        SRESULT,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+      <if test="clientid != null">
+        CLIENTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="scon != null">
+        #{scon,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null">
+        #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sresult != null">
+        #{sresult,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="clientid != null">
+        #{clientid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SInterview">
+    update S_INTERVIEW
+    <set>
+      <if test="stime != null">
+        STIME = #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="scon != null">
+        SCON = #{scon,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null">
+        SADDRESS = #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sresult != null">
+        SRESULT = #{sresult,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="clientid != null">
+        CLIENTID = #{clientid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SInterview">
+    update S_INTERVIEW
+    set STIME = #{stime,jdbcType=VARCHAR},
+      SCON = #{scon,jdbcType=VARCHAR},
+      SADDRESS = #{saddress,jdbcType=VARCHAR},
+      SRESULT = #{sresult,jdbcType=VARCHAR},
+      CLASSID = #{classid,jdbcType=DECIMAL},
+      CLIENTID = #{clientid,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sc.mapper.SClockingMapper">
+  <resultMap id="BaseResultMap" type="com.sc.pojo.SClocking">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STUDENTSID" jdbcType="DECIMAL" property="studentsid" />
+    <result column="CLASSID" jdbcType="DECIMAL" property="classid" />
+    <result column="TIMEING" jdbcType="TIMESTAMP" property="timeing" />
+    <result column="CLOCKINGTYPE" jdbcType="DECIMAL" property="clockingtype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STUDENTSID, CLASSID, TIMEING, CLOCKINGTYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from S_CLOCKING
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from S_CLOCKING
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sc.pojo.SClocking">
+    insert into S_CLOCKING (ID, STUDENTSID, CLASSID, 
+      TIMEING, CLOCKINGTYPE)
+    values (#{id,jdbcType=DECIMAL}, #{studentsid,jdbcType=DECIMAL}, #{classid,jdbcType=DECIMAL}, 
+      #{timeing,jdbcType=TIMESTAMP}, #{clockingtype,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sc.pojo.SClocking">
+    insert into S_CLOCKING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="studentsid != null">
+        STUDENTSID,
+      </if>
+      <if test="classid != null">
+        CLASSID,
+      </if>
+      <if test="timeing != null">
+        TIMEING,
+      </if>
+      <if test="clockingtype != null">
+        CLOCKINGTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="studentsid != null">
+        #{studentsid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="timeing != null">
+        #{timeing,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockingtype != null">
+        #{clockingtype,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sc.pojo.SClocking">
+    update S_CLOCKING
+    <set>
+      <if test="studentsid != null">
+        STUDENTSID = #{studentsid,jdbcType=DECIMAL},
+      </if>
+      <if test="classid != null">
+        CLASSID = #{classid,jdbcType=DECIMAL},
+      </if>
+      <if test="timeing != null">
+        TIMEING = #{timeing,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockingtype != null">
+        CLOCKINGTYPE = #{clockingtype,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sc.pojo.SClocking">
+    update S_CLOCKING
+    set STUDENTSID = #{studentsid,jdbcType=DECIMAL},
+      CLASSID = #{classid,jdbcType=DECIMAL},
+      TIMEING = #{timeing,jdbcType=TIMESTAMP},
+      CLOCKINGTYPE = #{clockingtype,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
